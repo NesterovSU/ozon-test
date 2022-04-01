@@ -1,5 +1,6 @@
 package managers;
 
+import org.apache.commons.exec.OS;
 import utils.MyProp;
 
 import java.io.FileInputStream;
@@ -22,7 +23,7 @@ public class PropertiesManager {
     private PropertiesManager() {
         loadApplicationProperties();
         loadCustomProperties();
-        setSystemDriversPaths();
+        chooseOS();
     }
 
     private void loadApplicationProperties() {
@@ -40,10 +41,20 @@ public class PropertiesManager {
         );
     }
 
-    private void setSystemDriversPaths() {
-        System.setProperty("webdriver.gecko.driver", PROPERTIES.get(MyProp.GECKO).toString());
-        System.setProperty("webdriver.chrome.driver", PROPERTIES.get(MyProp.CHROME).toString());
-        System.setProperty("webdriver.edge.driver", PROPERTIES.get(MyProp.EDGE).toString());
+    private void chooseOS(){
+        if (OS.isFamilyWindows()) {
+            setSystemDriversPaths("win");
+        } else if (OS.isFamilyMac()) {
+            setSystemDriversPaths("mac");
+        } else if (OS.isFamilyUnix()) {
+            setSystemDriversPaths("unix");
+        }
+    }
+
+    private void setSystemDriversPaths(String OS) {
+        System.setProperty("webdriver.gecko.driver", PROPERTIES.get(MyProp.GECKO + OS).toString());
+        System.setProperty("webdriver.chrome.driver", PROPERTIES.get(MyProp.CHROME + OS).toString());
+        System.setProperty("webdriver.edge.driver", PROPERTIES.get(MyProp.EDGE + OS).toString());
     }
 
     public String get(String key) {
