@@ -20,7 +20,7 @@ public class BasketPage extends BasePage {
 
     @FindBy(xpath = "//*[@data-widget='split']/div")
     private List<WebElement> products;
-
+    //*[@data-widget='split']/div/div[2]/a/span
     private By name = By.xpath("./div[2]/a/span"),
             cost = By.xpath("./div[3]/div[1]"),
             delete = By.xpath(".//span[contains(text(),'Удалить')]");

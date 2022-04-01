@@ -1,6 +1,5 @@
 package utils;
 
-import entities.Product;
 import io.qameta.allure.Allure;
 import managers.DriverManager;
 import org.junit.jupiter.api.extension.AfterTestExecutionCallback;
@@ -17,7 +16,6 @@ public class MyScreenshot implements AfterTestExecutionCallback {
     @Override
     public void afterTestExecution(ExtensionContext extensionContext){
         if (extensionContext.getExecutionException().isPresent()) {
-            Product.attachInfo();
             Allure.getLifecycle().addAttachment("screenshot", "image/png", ".png",
                     ((TakesScreenshot) DriverManager.getInstance()).getScreenshotAs(OutputType.BYTES));
         }

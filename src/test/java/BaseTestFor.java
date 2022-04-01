@@ -30,6 +30,7 @@ public class BaseTestFor {
     void afterEach() {
         DriverManager.quit();
         PagesManager.deleteInstance();
+        Product.attachInfo();
         Product.clearList();
     }
 }

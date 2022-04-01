@@ -19,7 +19,7 @@ public class MyTest extends BaseTestFor {
         int quantity = 8;
         int costMax = 150_000;
         String search = "iphone";
-        //поиск продукта
+
         PagesManager.getInstance()
                 .getHomePage()
                 .search(search)
@@ -33,8 +33,7 @@ public class MyTest extends BaseTestFor {
                 .checkProductsInBasket(Product.getProducts())
                 .deleteAllProducts()
                 .isBasketEmpty();
-        //приложение списка добавленных товаров к отчёту
-        Product.attachInfo();
+
     }
 
     @Test
@@ -45,7 +44,7 @@ public class MyTest extends BaseTestFor {
         int costMax = 50_000;
         String search = "беспроводные наушники";
         List<String> brands = new ArrayList<>(Arrays.asList("Beats", "Samsung", "Xiaomi"));
-        //поиск продукта
+
         PagesManager.getInstance()
                 .getHomePage()
                 .search(search)
@@ -59,8 +58,7 @@ public class MyTest extends BaseTestFor {
                 .checkProductsInBasket(Product.getProducts())
                 .deleteAllProducts()
                 .isBasketEmpty();
-        //приложение списка добавленных товаров к отчёту
-        Product.attachInfo();
+
     }
 
 }
